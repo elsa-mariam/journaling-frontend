@@ -1,0 +1,142 @@
+/* Signup.css */
+
+.signup-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-image: url('./assets/watercolor-blobs-of-light-purple-iphone-59b4ssfs9wbl2yfy 2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.signup-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.signup-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 393px;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.brand {
+  font-family: 'Lily Script One', cursive;
+  font-size: 40px;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.profile-upload {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.profile-circle {
+  width: 140px;
+  height: 140px;
+  background-color: #B0ACAC;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-icon {
+  font-size: 50px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plus-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #1D1A39;
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signup-form input {
+  
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.signup-form button {
+  height: 50px;
+  background-color: #662549;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.bottom-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.bottom-text a {
+  color: #3815C0;
+  text-decoration: underline;
+}
+
+.signup-message {
+  margin-top: 10px;
+  color: red;
+  font-size: 13px;
+}
+
+/* Optional: Make it look good on bigger screens too */
+@media (min-width: 768px) {
+  .signup-content {
+    padding: 40px;
+  }
+
+  .signup-form input,
+  .signup-form button {
+    font-size: 16px;
+  }
+}
