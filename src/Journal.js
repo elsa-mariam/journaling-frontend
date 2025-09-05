@@ -1,9 +1,46 @@
 import React, { useState } from "react";
 import "./Journal.css";
 import { FaArrowLeft } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 export default function Journal() {
   const [entry, setEntry] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const auth = getAuth();
+  const db = getFirestore();
+
+  // Save journal entry
+  const handleSave = async () => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("⚠️ You must be logged in to save a journal entry.");
+      return;
+    }
+
+    if (!entry.trim()) {
+      alert("⚠️ Please write something before saving.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await addDoc(collection(db, "users", user.uid, "journals"), {
+        text: entry,
+        createdAt: new Date(),
+      });
+      alert("✅ Journal entry saved!");
+      setEntry(""); // clear after saving
+    } catch (error) {
+      console.error("Error saving journal:", error);
+      alert("❌ Failed to save entry.");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="journal-container">
@@ -13,7 +50,7 @@ export default function Journal() {
           <FaArrowLeft />
         </button>
         <h1>Journal</h1>
-        <span className="date">Monday 1 Sep</span>
+        <span className="date">{new Date().toDateString()}</span>
       </header>
 
       {/* Subtext */}
@@ -28,7 +65,9 @@ export default function Journal() {
       />
 
       {/* AI Response Button */}
-      <button className="ai-btn">AI Response</button>
+      <button className="ai-btn" onClick={handleSave} disabled={loading}>
+        {loading ? "Saving..." : "Save Entry"}
+      </button>
 
       {/* Plus Button */}
       <button className="plus-btn">+</button>
